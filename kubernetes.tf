@@ -9,7 +9,7 @@ terraform {
   }
 }
 provider "docker" {
-  host = "npipe:////.//pipe//docker_engine"
+  host = "tcp://localhost:2375"
 }
 variable "host" {
   type = string
