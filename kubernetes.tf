@@ -8,9 +8,6 @@ terraform {
     }
   }
 }
-provider "docker" {
-
-}
 variable "host" {
   type = string
 }
