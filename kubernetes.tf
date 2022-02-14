@@ -98,7 +98,7 @@ resource "kubernetes_service" "nginx" {
 }
 // Docker Resources
 resource "docker_image" "flask" {
-  name         = "umamges/flaskapp"
+  name         = "umamages/flaskapp"
   keep_locally = false
 }
 
