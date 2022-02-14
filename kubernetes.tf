@@ -102,4 +102,4 @@ resource "docker_container" "flaskapp" {
     external = 8000
   }
 }
-
+}
