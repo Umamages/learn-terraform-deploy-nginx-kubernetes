@@ -100,7 +100,7 @@ resource "docker_image" "flaskapp" {
   name         = "umamages/flaskapp"
   keep_locally = false
   }
-  ports {
+  port {
     internal = 8000
     external = 8000
   }
