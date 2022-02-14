@@ -97,11 +97,11 @@ resource "kubernetes_service" "nginx" {
   }
 }
 resource "docker_image" "flaskapp" {
-  name         = "umamages/flaskapp:latest"
+  name         = "umamages/flaskapp"
   keep_locally = false
   }
 resource "docker_container" "flaskapp" {
-  image = docker_image.flaskapp.latest
+  image = docker_image.flaskapp
   name  = "flaskapp"
   ports {
     internal = 8000
