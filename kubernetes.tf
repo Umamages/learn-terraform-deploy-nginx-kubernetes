@@ -90,7 +90,7 @@ resource "kubernetes_service" "nginx" {
 
     type = "NodePort"
   }
-resource "docker_image" "flask" {
+resource "docker_image" "flaskapp" {
   name         = "umamages/flaskapp:latest"
   keep_locally = false
   }
