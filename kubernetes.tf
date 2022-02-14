@@ -3,9 +3,14 @@ terraform {
     kubernetes = {
       source = "hashicorp/kubernetes"
     }
+	docker = {
+      source = "kreuzwerker/docker"
+    }
   }
 }
+provider "docker" {
 
+}
 variable "host" {
   type = string
 }
@@ -94,12 +99,10 @@ resource "docker_image" "flaskapp" {
   name         = "umamages/flaskapp:latest"
   keep_locally = false
   }
-resource "docker_container" "flaskapp" {
-  image = docker_image.flaskapp.latest
+resource "docker_container" "flaskapp" {image = docker_image.flaskapp.latest
   name  = "flaskapp"
   ports {
     internal = 8000
     external = 8000
   }
-}
 }
