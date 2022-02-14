@@ -102,7 +102,7 @@ resource "docker_image" "flask" {
   keep_locally = false
 }
 
-resource "docker_container" "flask" {
+resource "docker_container" "flaskapp" {
   image = docker_image.flask.latest
   name  = "flaskapp"
   must_run = true
