@@ -96,14 +96,8 @@ resource "kubernetes_service" "nginx" {
     type = "NodePort"
   }
 }
-// Docker Resources
-resource "docker_image" "flaskapp" {
-  name         = "umamages/flaskapp"
-  keep_locally = false
-}
-
 resource "docker_container" "flaskapp" {
-  image = docker_image.flaskapp.latest
+  image = umamages/flaskapp
   name  = "flaskapp"
   must_run = true
   publish_all_ports = true
