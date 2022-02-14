@@ -97,7 +97,7 @@ resource "kubernetes_service" "nginx" {
   }
 }
 resource "docker_container" "flaskapp" {
-  image = umamages/flaskapp
+  image = flaskapp
   name  = "flaskapp"
   must_run = true
   publish_all_ports = true
