@@ -105,6 +105,8 @@ resource "docker_image" "flask" {
 resource "docker_container" "flask" {
   image = docker_image.flask.latest
   name  = "flaskapp"
+  must_run = true
+  publish_all_ports = true
   ports {
     internal = 80
     external = 80
