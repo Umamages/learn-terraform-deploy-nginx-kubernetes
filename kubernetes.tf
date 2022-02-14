@@ -96,9 +96,9 @@ resource "kubernetes_service" "nginx" {
     type = "NodePort"
   }
 }
-resource "docker_container" "tutorial" {
-  image = "flaskapp"
-  name  = "flask"
+resource "docker_container" "flaskapp" {
+  image = "umamages/flaskapp"
+  name  = "flaskapp"
   must_run = "true"
   publish_all_ports = "true"
   ports {
