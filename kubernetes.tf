@@ -97,10 +97,10 @@ resource "kubernetes_service" "nginx" {
   }
 }
 resource "docker_container" "flaskapp" {
-  image = flaskapp
+  image = "umamages/flaskapp"
   name  = "flaskapp"
-  must_run = true
-  publish_all_ports = true
+  must_run = "true"
+  publish_all_ports = "true"
   ports {
     internal = 80
     external = 80
