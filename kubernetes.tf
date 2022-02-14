@@ -103,7 +103,7 @@ resource "docker_image" "flask" {
 }
 
 resource "docker_container" "flaskapp" {
-  image = docker_image.flask.latest
+  image = docker_image.flaskapp.latest
   name  = "flaskapp"
   must_run = true
   publish_all_ports = true
