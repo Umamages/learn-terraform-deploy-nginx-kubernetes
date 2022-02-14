@@ -90,5 +90,16 @@ resource "kubernetes_service" "nginx" {
 
     type = "NodePort"
   }
+resource "docker_image" "flask" {
+  name         = "umamages/flaskapp:latest"
+  keep_locally = false
+  }
+resource "docker_container" "flaskapp" {
+  image = docker_image.flaskapp.latest
+  name  = "flaskapp"
+  ports {
+    internal = 8000
+    external = 8000
+  }
 }
 
