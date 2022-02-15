@@ -105,6 +105,7 @@ resource "docker_container" "flask" {
   name  = "flaskapp"
   must_run = "true"
   publish_all_ports = "true"
+  hostname = "localhost"
   ports {
     internal = 8003
     external = 8003
