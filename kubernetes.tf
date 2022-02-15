@@ -6,10 +6,8 @@ terraform {
   }
 }
 provider "docker" {
-}
-  registry_auth {
-    address = "registry.hub.docker.com"
-    config_file = "${pathexpand("~/.docker/config.json")}"
+  version = "~> 2.6"
+  host    = "npipe:////.//pipe//docker_engine"
 }
  variable "host" {
   type = string
