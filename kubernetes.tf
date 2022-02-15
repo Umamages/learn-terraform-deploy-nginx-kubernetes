@@ -33,7 +33,7 @@ provider "kubernetes" {
 }
 resource "docker_image" "flask" {
   name         = "umamages/flaskapp:latest"
-  keep_locally = false
+  keep_locally = true
 }
 resource "docker_container" "flask" {
   image = docker_image.flask.latest
