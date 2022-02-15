@@ -5,7 +5,13 @@ terraform {
     }
   }
 }
-provider "docker" {}
+provider "docker" {
+ version = "~> 2.2"
+
+  registry_auth {
+    address = "registry.hub.docker.com"
+    config_file = "${pathexpand("~/.docker/config.json")}"
+}
 variable "host" {
   type = string
 }
