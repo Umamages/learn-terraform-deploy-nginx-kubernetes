@@ -106,7 +106,7 @@ resource "docker_container" "flask" {
   must_run = "true"
   publish_all_ports = "true"
   ports {
-    internal = 8000
-    external = 8000
+    internal = 8003
+    external = 8003
   }
 }
