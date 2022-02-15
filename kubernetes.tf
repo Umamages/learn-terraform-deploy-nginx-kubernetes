@@ -1,9 +1,6 @@
 terraform {
   required_providers {
-    kubernetes = {
-      source = "hashicorp/kubernetes"
-    }
-	docker = {
+    	docker = {
       source = "kreuzwerker/docker"
     }
   }
