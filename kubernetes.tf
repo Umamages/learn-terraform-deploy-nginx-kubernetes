@@ -6,7 +6,6 @@ terraform {
   }
 }
 provider "docker" {
-  version = "~> 20.10"
   host    = "npipe:////.//pipe//docker_engine"
 }
  variable "host" {
