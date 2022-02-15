@@ -9,7 +9,7 @@ terraform {
   }
 }
 provider "docker" {
-  host = "tcp://localhost:2375"
+  host = "tcp://127.0.0.1:2375"
 }
 variable "host" {
   type = string
