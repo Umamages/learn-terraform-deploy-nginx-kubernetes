@@ -1,11 +1,9 @@
 FROM python:3.8
 
-WORKDIR /usr/src/app
+WORKDIR /c/USers/getum/Documents/learn-terraform-deploy-nginx-kubernetes
 
 COPY . .
 
-RUN pip install --no-cache-dir -r requirements.txt
-
-EXPOSE 5000
+EXPOSE 8003
 
 CMD ["python", "./app.py"]
