@@ -1,14 +1,17 @@
 terraform {
   required_providers {
-    	docker = {
+    kubernetes = {
+      source = "hashicorp/kubernetes"
+    }
+	docker = {
       source = "kreuzwerker/docker"
     }
   }
 }
 provider "docker" {
-  host    = "npipe:////.//pipe//docker_engine"
+  host = "tcp://localhost:2375"
 }
- variable "host" {
+variable "host" {
   type = string
 }
 
@@ -31,15 +34,65 @@ provider "kubernetes" {
   client_key             = base64decode(var.client_key)
   cluster_ca_certificate = base64decode(var.cluster_ca_certificate)
 }
-resource "docker_image" "flask" {
-  name         = "umamages/flaskapp:latest"
-  keep_locally = true
+resource "kubernetes_deployment" "nginx" {
+  metadata {
+    name = "scalable-nginx-example"
+    labels = {
+      App = "ScalableNginxExample"
+    }
+  }
+
+  spec {
+    replicas = 4
+    selector {
+      match_labels = {
+        App = "ScalableNginxExample"
+      }
+    }
+    template {
+      metadata {
+        labels = {
+          App = "ScalableNginxExample"
+        }
+      }
+      spec {
+        container {
+          image = "nginx:1.20.2"
+          name  = "example"
+
+          port {
+            container_port = 80
+          }
+
+          resources {
+            limits = {
+              cpu    = "0.5"
+              memory = "512Mi"
+            }
+            requests = {
+              cpu    = "250m"
+              memory = "50Mi"
+            }
+          }
+        }
+      }
+    }
+  }
 }
-resource "docker_container" "flask" {
-  image = docker_image.flask.latest
-  name  = "flaskapp"
-  ports {
-    internal = 8003
-    external = 8003
+resource "kubernetes_service" "nginx" {
+  metadata {
+    name = "nginx-example"
+  }
+  spec {
+    selector = {
+      App = kubernetes_deployment.nginx.spec.0.template.0.metadata[0].labels.App
+    }
+    port {
+      node_port   = 30201
+      port        = 80
+      target_port = 80
+    }
+
+    type = "NodePort"
   }
 }
